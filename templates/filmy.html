@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/plain" href="{% static 'moj.css' %}">
+</head>
+<body>
+    {% if films|length == 0 %}
+        <h2>Brak filmów</h2>
+    {% else %}
+        <h2>Ilosc filmow w BD: {{ films|length }}</h2>
+
+        {% for film in films %}
+            <p>{{ film.tytul }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
