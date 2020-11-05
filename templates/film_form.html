@@ -1,0 +1,23 @@
+{% extends 'glowny.html' %}
+{% load bootstrap %}
+{% block tytul %} Film form {% endblock %}
+
+{% block strona %}
+    <div class="card" style="width: 26rem;">
+        <div class="card-body">
+            <h5 class="card-title">Film form</h5>
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            {{ form_dodatkowe|bootstrap }}
+                {% if nowy %}
+                    <button type="submit">Nowy film</button>
+                {% else %}
+                    <button type="submit">Edytuj</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'wszystkie_filmy' %}">Cofnij</a>
+
+{% endblock %}

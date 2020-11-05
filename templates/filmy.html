@@ -1,24 +1,36 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+{% extends 'glowny.html' %}
 
-    <link rel="stylesheet" type="text/plain" href="{% static 'moj.css' %}">
-</head>
-<body>
-    {% if films|length == 0 %}
-        <h2>Brak filmów</h2>
+{% block tytul %} Lista filmów {% endblock %}
+
+{% block strona %}
+    <div class="jumbotron">
+        {% if user.is_authenticated %}
+      <h1 class="display-4">Witaj {{ user.username }}</h1>
+        <a href="{% url 'logout' %}">Logout</a>
     {% else %}
-        <h2>Ilosc filmow w BD: {{ films|length }}</h2>
-
-        {% for film in films %}
-            <p>{{ film.tytul }}</p>
-        {% endfor %}
+        <a href="{% url 'login' %}">Login</a>
     {% endif %}
-</body>
-</html>
+    </div>
+
+    <hr>
+
+    <a href="{% url 'nowy_film' %}">Nowy film</a>
+    {% for film in films %}
+        <div class="card" style="width: 32rem;">
+          <div class="card-body">
+              <img src="/media/{{film.plakat}}" class="film-plakat">
+              <div class="row">
+                  <div class="col-9">
+                      <h5 class="card-title">{{ film }}</h5>
+                  </div>
+                  <div class="col-3">
+                      <a href="{% url 'edytuj_film' film.id %}">Edytuj</a>
+                      <a href="{% url 'usun_film' film.id %}">Usuń</a>
+                  </div>
+                  </div>
+                  <div class="row">
+                      <p class="card-text">{{ film.opis }}</p>
+          </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'un)f=v%8m2150c()16-ctan*ay_g95d689ifm+cmxy(m!b#$^q'
 
 # SECURITY WARNING: don't run with debug turned on middin production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
+    'rest_framework',
     'filmyweb'
 ]
 
@@ -124,3 +126,6 @@ STATICFILES_DIRS = ['moje_static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'moje_media'
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'wszystkie_filmy'
+LOGOUT_REDIRECT_URL = 'login'

@@ -1,0 +1,15 @@
+{% extends 'glowny.html' %}
+
+{% block tytul %} Potwierdz {% endblock %}
+
+{% block strona %}
+    <div class="card" style="width: 26rem;">
+        <div class="card-body">
+            <h5 class="card-title">Czy na pewno chcesz usunąć "{{ film.tytul }}" ? </h5>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Usun film</button>
+    </form>
+    <a href="{% url 'wszystkie_filmy' %}">Cofnij</a>
+
+{% endblock %}
